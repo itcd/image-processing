@@ -34,6 +34,6 @@ if __name__ == '__main__':
     img = io.imread('data/vorts1.mhd', plugin='simpleitk')
 #    print(img)
     io.imshow(img[0])
-    io.imsave('~skimage_vorts1.mhd', img, plugin='simpleitk')
+#    io.imsave('~skimage_vorts1.mhd', img, plugin='simpleitk')
     io.imsave('~skimage_vorts1.tif', img, plugin='tifffile')
     sitk.WriteImage(sitk.GetImageFromArray(img), "~sitk_vorts1.mhd")
