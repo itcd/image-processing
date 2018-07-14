@@ -11,7 +11,12 @@ from matplotlib import pyplot as plt
 
 WIDTH = 128   # has a great influence on the result
 
-def spectral_residual_saliency_map(img):
+def spectral_residual_saliency_map(img, filename):
+    plt.imshow(img, cmap = 'gray', interpolation = 'bicubic')
+    plt.xticks([]), plt.yticks([])  # to hide tick values on X and Y axis
+    plt.title(img.shape)
+    plt.show()
+    
     img = cv2.resize(img, (WIDTH,int(WIDTH*img.shape[0]/img.shape[1])))
 #    plt.imshow(img, cmap = 'gray', interpolation = 'bicubic')
 #    plt.xticks([]), plt.yticks([])  # to hide tick values on X and Y axis
@@ -37,7 +42,7 @@ def spectral_residual_saliency_map(img):
     plt.xticks([]), plt.yticks([])  # to hide tick values on X and Y axis
     plt.title(mag.shape)
     plt.show()
-    plt.imsave('~saliency_dancing.jpg', mag, cmap = 'gray')
+    plt.imsave('~saliency_' + filename, mag, cmap = 'gray')
 
 if __name__ == '__main__':
 
@@ -45,10 +50,8 @@ if __name__ == '__main__':
     #cv2.imshow('image',img)
     #cv2.waitKey(0)
     #cv2.destroyAllWindows()
+    spectral_residual_saliency_map(img, 'dancing.jpg')
     
-    plt.imshow(img, cmap = 'gray', interpolation = 'bicubic')
-    plt.xticks([]), plt.yticks([])  # to hide tick values on X and Y axis
-    plt.title(img.shape)
-    plt.show()
+    img2 = cv2.imread('images/picasso.jpg', cv2.IMREAD_GRAYSCALE)
+    spectral_residual_saliency_map(img2, 'picasso.jpg')
     
-    spectral_residual_saliency_map(img)
