@@ -33,6 +33,10 @@ def spectral_residual_saliency_map(img, filename):
     mag = c[:,:,0]**2 + c[:,:,1]**2
     cv2.normalize(cv2.GaussianBlur(mag,(9,9),3,3), mag, 0., 1., cv2.NORM_MINMAX)
     
+    print(c.shape)
+    print(mag.shape)
+    print(spectralResidual.shape)
+    
 #    cv2.imshow('Saliency Map', mag)
 #    c = cv2.waitKey(0) & 0xFF
 #    if(c==27 or c==ord('q')):
@@ -45,13 +49,10 @@ def spectral_residual_saliency_map(img, filename):
     plt.imsave('~saliency_' + filename, mag, cmap = 'gray')
 
 if __name__ == '__main__':
-
-    img = cv2.imread('images/dancing.jpg', cv2.IMREAD_GRAYSCALE)
-    #cv2.imshow('image',img)
-    #cv2.waitKey(0)
-    #cv2.destroyAllWindows()
-    spectral_residual_saliency_map(img, 'dancing.jpg')
-    
-    img2 = cv2.imread('images/picasso.jpg', cv2.IMREAD_GRAYSCALE)
-    spectral_residual_saliency_map(img2, 'picasso.jpg')
-    
+    path = 'C:/Users/hasee/Downloads/'
+    files = ['IMG_20180606_081755_1.jpg',
+             'IMG_20180614_105021.jpg',
+             'IMG_20180617_115311.jpg']
+    for i in files:
+        img = cv2.imread(path + i, cv2.IMREAD_GRAYSCALE)
+        spectral_residual_saliency_map(img, i)
